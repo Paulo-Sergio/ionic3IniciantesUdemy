@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -10,6 +11,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FeedPageModule } from "../pages/feed/feed.module";
+import { FeedPage } from "../pages/feed/feed";
+import { IntroPageModule } from "../pages/intro/intro.module";
+import { MovieProvider } from '../providers/movie/movie';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    FeedPageModule,
+    IntroPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    MovieProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
